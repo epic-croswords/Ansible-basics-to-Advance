@@ -40,7 +40,7 @@ and done.
 Ansible uses inventory to mange list of servers to communicate with your servers. Like hosts file (/etc/hosts) that matches servers (IP address or domain names) to groups. Inventory file can also send vars to authenticate with servers or also it can able to store variable = values lines. Just create simple file with with one server. Create file at /etc/ansible/hosts (the default location for the ansibles inventory file)
 
 Edit this hosts file with nano, vim or whatever editor you need to edit file as sudo or root.
-
+```
 [example] # group of hostname/IP
 www.example.com
-
+```
