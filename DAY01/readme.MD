@@ -90,4 +90,31 @@ ansible all -m service -a 'name=httpd state=restarted'
 
 ---
 
+Config File (ansible.cfg)
+
+The ansible.cfg file is used to customize Ansible configuration. Create this file in your project directory to override default settings.
+Example ansible.cfg
+
+ini
+
+[defaults]
+inventory = ./hosts
+remote_user = your_user
+host_key_checking = False
+
+Hosts File
+
+The hosts file lists the managed nodes and groups them for easy reference in playbooks.
+Example hosts File
+
+ini
+
+[webservers]
+webserver1.example.com
+webserver2.example.com
+
+[databases]
+db1.example.com
+db2.example.com
+
 This structure provides a clear and concise overview of ad hoc commands, making it easy for users to understand and implement them.
