@@ -14,7 +14,7 @@ Ansible works by pushing changes out to all your servers (by default), and requi
 ### Idempotence:
 Its ability to run an operation which produces the same result whether run once or multiple times. 
 An important feature of a configuration management tool is its ability to ensure the same configuration is maintained whether you run it once or a thousand times. Many shell scripts have unintended consequences if run more than once, but Ansible deploys the same configuration to a server over and over again without making any changes after the first deployment.
---
+
 ### Installing Ansible:
 Ansible requires only one dependency which is python. (Best way to install thru OS repository)
 The easiest way to install Ansible on a Fedora-like system is to use the official yum package. If you’re running Red Hat Enterprise Linux (RHEL) or CentOS, you need to install EPEL’s RPM before you install Ansible (see the info section below for instructions):
