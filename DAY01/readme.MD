@@ -2,8 +2,6 @@
 
 Let’s look what is ansible what is term called configuration management, why do we need ansible & its purpose, how to install & configure ansible, how ansible work what its advantages and disadvantages will look. Puppet vs Ansible, in the few next chapters will see how to create own YAML files, AD-HOC commands, YAML indentations, playbooks, ansible roles, galaxy commands & much more will see advance concepts to secure credentials automating some things, ansible event handling etc.
 
-
-
 ### Why do we use ansible:
 >	Ansible is a configuration management tool that are used to perform automation on several hardware or machines simultaneously, it used to reduce the manual overhead after resource created thru ansible automations we can configure that resource according to our need, or when need to change in the configuration of every Linux server that you have every time you need to login via SSH to modify config files & install/uninstall some libraries etc. with ansible it becomes quite easy to do those things because of with it becomes extremely useful, easy to manage to config with all servers, to perform repeated actions etc. those things are managed by ansible.
 
@@ -16,7 +14,7 @@ Ansible works by pushing changes out to all your servers (by default), and requi
 ### Idempotence:
 Its ability to run an operation which produces the same result whether run once or multiple times. 
 An important feature of a configuration management tool is its ability to ensure the same configuration is maintained whether you run it once or a thousand times. Many shell scripts have unintended consequences if run more than once, but Ansible deploys the same configuration to a server over and over again without making any changes after the first deployment.
-
+--
 ### Installing Ansible:
 Ansible requires only one dependency which is python. (Best way to install thru OS repository)
 The easiest way to install Ansible on a Fedora-like system is to use the official yum package. If you’re running Red Hat Enterprise Linux (RHEL) or CentOS, you need to install EPEL’s RPM before you install Ansible (see the info section below for instructions):
