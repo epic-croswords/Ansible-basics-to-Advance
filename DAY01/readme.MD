@@ -8,10 +8,6 @@ Let’s look what is ansible what is term called configuration management, why d
 ### What is configuration management:
 >	Before the configuration management comes in the picture usually sysadmins & developers needs read and configure every configuration manually by hand it becomes quite difficult to recreate those things from scratch every time. They found out bash scripting can be useful for them to simplify those things in scripted manner and it becomes quite easy to do those activities, here comes ansible One of Ansible’s greatest strengths is its ability to run regular shell commands verbatim, so you can take existing scripts and commands and work on converting them into idempotent playbooks as time allows. For someone (like me) who was comfortable with the command line, but never became proficient in more compli- cated tools like Puppet or Chef (which both required at least a slight understanding of Ruby and/or a custom language just to get started), Ansible was a breath of fresh air.  
 
-### Advantages of Ansible
-  - Pushes changes to all servers without requiring additional software.
-  - Ensures the same configuration is maintained, avoiding unintended consequences of repeated shell scripts.
-
 ### Advantage of Ansible:
 Ansible works by pushing changes out to all your servers (by default), and requires no extra software to be installed on your servers (thus no extra memory footprint, and no extra daemon to manage), unlike most other configuration management tools.
 
