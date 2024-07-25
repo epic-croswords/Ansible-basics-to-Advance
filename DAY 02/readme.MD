@@ -168,23 +168,26 @@ via sudo (the default is root) with the --become-user (-U) option.
 Other options for ansible-playbook
 The ansible-playbook command also allows for some other common options:
 
-• --inventory=PATH (-i PATH): Define a custom inventory file (default is the
+```
+--inventory=PATH (-i PATH): Define a custom inventory file (default is the
 default Ansible inventory file, usually located at /etc/ansible/hosts).
 
-• --verbose (-v): Verbose mode (show all output, including output from success-
+--verbose (-v): Verbose mode (show all output, including output from success-
 ful options). You can pass in -vvvv to give every minute detail.
 
-• --extra-vars=VARS (-e VARS): Define variables to be used in the playbook, in
+--extra-vars=VARS (-e VARS): Define variables to be used in the playbook, in
 "key=value,key=value" format.
 
-• --forks=NUM (-f NUM): Number for forks (integer). Set this to a number higher
+--forks=NUM (-f NUM): Number for forks (integer). Set this to a number higher
 than 5 to increase the number of servers on which Ansible will run tasks
 concurrently.
 
-• --connection=TYPE (-c TYPE): The type of connection which will be used (this
+--connection=TYPE (-c TYPE): The type of connection which will be used (this
 defaults to ssh; you might sometimes want to use local to run a playbook on
 your local machine, or on a remote server via cron).
 Chapter 4 - Ansible Playbooks 53
 
-• --check: Run the playbook in Check Mode (‘Dry Run’); all tasks defined in the
+--check: Run the playbook in Check Mode (‘Dry Run’); all tasks defined in the
 playbook will be checked against all hosts, but none will actually be run
+
+```
