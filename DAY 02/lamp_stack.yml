@@ -1,0 +1,103 @@
+---
+- name: Set up LAMP stack and deploy PHP application
+  hosts: webservers
+  become: yes
+
+  vars:
+    mysql_root_password: "your_root_password"
+    mysql_db: "my_database"
+    mysql_user: "my_user"
+    mysql_password: "my_password"
+
+  tasks:
+    - name: Ensure Apache is installed
+      ansible.builtin.yum:
+        name: httpd
+        state: present
+      when: ansible_os_family == "RedHat"
+    
+    - name: Ensure Apache is installed
+      ansible.builtin.apt:
+        name: apache2
+        state: present
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
+    - name: Ensure MySQL is installed
+      ansible.builtin.yum:
+        name: mariadb-server
+        state: present
+      when: ansible_os_family == "RedHat"
+    
+    - name: Ensure MySQL is installed
+      ansible.builtin.apt:
+        name: mysql-server
+        state: present
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
+    - name: Ensure PHP is installed
+      ansible.builtin.yum:
+        name: php
+        state: present
+      when: ansible_os_family == "RedHat"
+    
+    - name: Ensure PHP is installed
+      ansible.builtin.apt:
+        name: php
+        state: present
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
+    - name: Start and enable Apache service
+      ansible.builtin.service:
+        name: "{{ 'httpd' if ansible_os_family == 'RedHat' else 'apache2' }}"
+        state: started
+        enabled: yes
+
+    - name: Start and enable MySQL service
+      ansible.builtin.service:
+        name: "{{ 'mariadb' if ansible_os_family == 'RedHat' else 'mysql' }}"
+        state: started
+        enabled: yes
+
+    - name: Secure MySQL installation
+      ansible.builtin.mysql_user:
+        name: root
+        password: "{{ mysql_root_password }}"
+        host_all: true
+        state: present
+
+    - name: Create MySQL database
+      ansible.builtin.mysql_db:
+        name: "{{ mysql_db }}"
+        state: present
+
+    - name: Create MySQL user
+      ansible.builtin.mysql_user:
+        name: "{{ mysql_user }}"
+        password: "{{ mysql_password }}"
+        priv: "{{ mysql_db }}.*:ALL"
+        state: present
+
+    - name: Deploy PHP application
+      ansible.builtin.copy:
+        src: /path/to/your/application/
+        dest: /var/www/html/
+        owner: apache
+        group: apache
+        mode: 0755
+
+    - name: Open port 80 in firewall (for RedHat based systems)
+      ansible.builtin.firewalld:
+        port: 80/tcp
+        permanent: yes
+        state: enabled
+        immediate: yes
+      when: ansible_os_family == "RedHat"
+
+    - name: Ensure UFW is enabled and allow Apache (for Debian based systems)
+      ansible.builtin.ufw:
+        rule: allow
+        name: 'Apache'
+      when: ansible_os_family == "Debian"
