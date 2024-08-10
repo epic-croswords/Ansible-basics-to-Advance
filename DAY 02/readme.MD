@@ -191,3 +191,7 @@ Chapter 4 - Ansible Playbooks 53
 playbook will be checked against all hosts, but none will actually be run
 
 ```
+
+
+
+for the demo of yaml file's you can checkout the above mentioned attached files....
