@@ -1,0 +1,60 @@
+---
+- name: Demostrate ansible playbooks
+  hosts: servers
+  become: yes
+
+  vars:
+    pakage_name: httpd
+    service_name: httpd
+    document_root: /var/www/html/
+    demo_user: mahesh
+  
+  task:
+    - name: ensure {{ pakage_name }} is installed.
+      ansible.builtin.yum:
+        name: "{{ pakage_name }}"
+        state: present
+      when: ansible_os_family == "Amazon Linux 2023"
+
+    - name: ENsure apache is installed.
+      ansible.builtin.apt:
+        name: apache2
+        status: present
+      when: ansible_facts['os_family'] == "Debian"
+
+    - name: Ensure the service {{ pakage_name }} is running.
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: yes
+    
+    - name: create document root if its doesnt exists
+      ansible.builtin.file:
+        path: "{{ document_root }}"
+        state: directory
+        owner: apache
+        group: apache
+
+    - name: create a demo ec2-user
+      ansible.builtin.user:
+        name: "{{ demo_user }}"
+        state: present
+        createhome: yes
+        shell: /bin/bash
+    
+    - name: create a demo content
+      shell: >
+        touch /var/www/html/index.html
+        echo "this is my public ip address $(curl https://ipconfig.me)" >> /var/www/html/index.html
+        chmod 777 /var/www/html/index.html
+      notify: restart apache
+
+    - name: Desplay massage if apache is installed.
+      ansible.builtin.debug:
+        msg: "apache is installed, and runnning"
+
+  handlers:
+    - name: restart apache
+      ansible.builtin.service:
+        name: "{{ service_name }}"
+        state: restarted
