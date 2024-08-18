@@ -1,4 +1,4 @@
-# Day 6: 🎯 Playbook Organization - Roles, Ansible Galaxy & More
+# Day 3: 🎯 Playbook Organization - Roles, Ansible Galaxy & More
 
 Welcome to Day 6 of the Ansible "Zero to Hero" series! Today, we'll dive deep into organizing your Ansible playbooks using roles, includes, and Ansible Galaxy. By the end of this guide, you'll understand how to structure your playbooks for scalability, maintainability, and reusability. 🚀
 
